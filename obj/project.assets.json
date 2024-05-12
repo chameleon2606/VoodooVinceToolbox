@@ -1,0 +1,981 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "ClickableTransparentOverlay/6.2.1": {
+        "type": "package",
+        "dependencies": {
+          "ImGui.NET": "1.89.2",
+          "SixLabors.ImageSharp": "2.1.3",
+          "Vortice.D3DCompiler": "2.2.0",
+          "Vortice.Direct3D11": "2.2.0"
+        },
+        "compile": {
+          "lib/net6.0/ClickableTransparentOverlay.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/ClickableTransparentOverlay.dll": {}
+        }
+      },
+      "ImGui.NET/1.89.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0"
+        },
+        "compile": {
+          "lib/net6.0/ImGui.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ImGui.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libcimgui.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx/native/libcimgui.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/win-x64/native/cimgui.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/cimgui.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "ImGui.NET.Docking/1.75.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ImGui.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ImGui.NET.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libcimgui.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-x64/native/libcimgui.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/cimgui.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/cimgui.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "Memory.dll.x64/1.2.27": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Memory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Memory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SharpGen.Runtime/2.0.0-beta.11": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SharpGen.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SharpGen.Runtime.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "SharpGen.Runtime.COM/2.0.0-beta.11": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11"
+        },
+        "compile": {
+          "lib/net5.0/SharpGen.Runtime.COM.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SharpGen.Runtime.COM.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "SixLabors.ImageSharp/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
+      },
+      "System.Buffers/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "System.Numerics.Vectors/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vortice.D3DCompiler/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DirectX": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.D3DCompiler.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.D3DCompiler.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.Direct3D11/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DXGI": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.Direct3D11.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.Direct3D11.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.DirectX/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.DirectX.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.DirectX.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.DXGI/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DirectX": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.DXGI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.DXGI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.Mathematics/1.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Vortice.Mathematics.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.Mathematics.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      }
+    },
+    "net6.0/win-x64": {
+      "ClickableTransparentOverlay/6.2.1": {
+        "type": "package",
+        "dependencies": {
+          "ImGui.NET": "1.89.2",
+          "SixLabors.ImageSharp": "2.1.3",
+          "Vortice.D3DCompiler": "2.2.0",
+          "Vortice.Direct3D11": "2.2.0"
+        },
+        "compile": {
+          "lib/net6.0/ClickableTransparentOverlay.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/ClickableTransparentOverlay.dll": {}
+        }
+      },
+      "ImGui.NET/1.89.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0"
+        },
+        "compile": {
+          "lib/net6.0/ImGui.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ImGui.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "native": {
+          "runtimes/win-x64/native/cimgui.dll": {}
+        }
+      },
+      "ImGui.NET.Docking/1.75.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ImGui.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ImGui.NET.dll": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/cimgui.dll": {}
+        }
+      },
+      "Memory.dll.x64/1.2.27": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Memory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Memory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SharpGen.Runtime/2.0.0-beta.11": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SharpGen.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SharpGen.Runtime.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "SharpGen.Runtime.COM/2.0.0-beta.11": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11"
+        },
+        "compile": {
+          "lib/net5.0/SharpGen.Runtime.COM.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SharpGen.Runtime.COM.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "SixLabors.ImageSharp/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
+      },
+      "System.Buffers/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "System.Numerics.Vectors/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vortice.D3DCompiler/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DirectX": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.D3DCompiler.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.D3DCompiler.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.Direct3D11/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DXGI": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.Direct3D11.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.Direct3D11.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.DirectX/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.DirectX.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.DirectX.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.DXGI/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "SharpGen.Runtime": "2.0.0-beta.11",
+          "SharpGen.Runtime.COM": "2.0.0-beta.11",
+          "Vortice.DirectX": "2.2.0",
+          "Vortice.Mathematics": "1.4.22"
+        },
+        "compile": {
+          "lib/net6.0/Vortice.DXGI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.DXGI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/_._": {}
+        }
+      },
+      "Vortice.Mathematics/1.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Vortice.Mathematics.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vortice.Mathematics.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClickableTransparentOverlay/6.2.1": {
+      "sha512": "b4nFe7ZdfkxAuovO685wHeq8IijW18M8Kr98LNGDBBgMKv+L2+k+NspxVVG0k4hEhJZhRA8sjwh+2HcwZ06o2A==",
+      "type": "package",
+      "path": "clickabletransparentoverlay/6.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "clickabletransparentoverlay.6.2.1.nupkg.sha512",
+        "clickabletransparentoverlay.nuspec",
+        "lib/net6.0/ClickableTransparentOverlay.dll"
+      ]
+    },
+    "ImGui.NET/1.89.2": {
+      "sha512": "JcId8ENjqaV1IUzF7PmXLO6m+v1P6o3sUXb8a+ar44MeT+ufdf5sB1UeiahXysacL17zPt2DzbYlwGnqAIx+hA==",
+      "type": "package",
+      "path": "imgui.net/1.89.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/net40/ImGui.NET.targets",
+        "imgui.net.1.89.2.nupkg.sha512",
+        "imgui.net.nuspec",
+        "lib/net6.0/ImGui.NET.dll",
+        "lib/net6.0/ImGui.NET.xml",
+        "lib/netstandard2.0/ImGui.NET.dll",
+        "lib/netstandard2.0/ImGui.NET.xml",
+        "runtimes/linux-x64/native/libcimgui.so",
+        "runtimes/osx/native/libcimgui.dylib",
+        "runtimes/win-x64/native/cimgui.dll",
+        "runtimes/win-x86/native/cimgui.dll"
+      ]
+    },
+    "ImGui.NET.Docking/1.75.0": {
+      "sha512": "OR1NksDIaBcL1cLTx8CztG6Dvpgc7tu82JWYoYkerzWlsq4k160ZOG+YUo5OBaIkEDBGh/6AQ6Y0xF58FXo8PQ==",
+      "type": "package",
+      "path": "imgui.net.docking/1.75.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/net40/ImGui.NET.targets",
+        "imgui.net.docking.1.75.0.nupkg.sha512",
+        "imgui.net.docking.nuspec",
+        "lib/netstandard2.0/ImGui.NET.dll",
+        "runtimes/linux-x64/native/libcimgui.so",
+        "runtimes/osx-x64/native/libcimgui.dylib",
+        "runtimes/win-x64/native/cimgui.dll",
+        "runtimes/win-x86/native/cimgui.dll"
+      ]
+    },
+    "Memory.dll.x64/1.2.27": {
+      "sha512": "hu7a3ImbDrvQyF0jnCxcesjTiIZbLHtuh6D/SINeFSp6E8x5BBdiQOdIkUXaxxr8ZWN7P9UIKgEUHy4jazdzhA==",
+      "type": "package",
+      "path": "memory.dll.x64/1.2.27",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.txt",
+        "icon.png",
+        "lib/netstandard2.0/Memory.dll",
+        "lib/netstandard2.0/Memory.xml",
+        "memory.dll.x64.1.2.27.nupkg.sha512",
+        "memory.dll.x64.nuspec",
+        "readme.md"
+      ]
+    },
+    "SharpGen.Runtime/2.0.0-beta.11": {
+      "sha512": "spTKX7k60Z/eIcRmFU2AvAOk5i17z7H1N7LkYBYKfY7BfkjzegAoG/mpGWKfjiokWuojmIWronGUMwnBcnF2pw==",
+      "type": "package",
+      "path": "sharpgen.runtime/2.0.0-beta.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Mapping.xml",
+        "build/SharpGen.Runtime.props",
+        "buildMultiTargeting/SharpGen.Runtime.props",
+        "lib/net45/SharpGen.Runtime.dll",
+        "lib/net46/SharpGen.Runtime.dll",
+        "lib/net471/SharpGen.Runtime.dll",
+        "lib/net5.0/SharpGen.Runtime.dll",
+        "lib/netcoreapp2.1/SharpGen.Runtime.dll",
+        "lib/netcoreapp3.0/SharpGen.Runtime.dll",
+        "lib/netstandard1.3/SharpGen.Runtime.dll",
+        "lib/netstandard2.0/SharpGen.Runtime.dll",
+        "lib/netstandard2.1/SharpGen.Runtime.dll",
+        "sharpgen.runtime.2.0.0-beta.11.nupkg.sha512",
+        "sharpgen.runtime.nuspec"
+      ]
+    },
+    "SharpGen.Runtime.COM/2.0.0-beta.11": {
+      "sha512": "/GgjdiSDdmEhgfjXAFnIrah9xk9FJjOGlFHjBUz7Nt0F3Fi9HFuAhGexm0ScU/goKiMfKrvOOryXIhDCn7veMg==",
+      "type": "package",
+      "path": "sharpgen.runtime.com/2.0.0-beta.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/SharpGen.Runtime.COM.BindMapping.xml",
+        "build/SharpGen.Runtime.COM.props",
+        "buildMultiTargeting/SharpGen.Runtime.COM.props",
+        "lib/net45/SharpGen.Runtime.COM.dll",
+        "lib/net5.0/SharpGen.Runtime.COM.dll",
+        "lib/netstandard1.3/SharpGen.Runtime.COM.dll",
+        "lib/netstandard2.0/SharpGen.Runtime.COM.dll",
+        "sharpgen.runtime.com.2.0.0-beta.11.nupkg.sha512",
+        "sharpgen.runtime.com.nuspec"
+      ]
+    },
+    "SixLabors.ImageSharp/3.1.4": {
+      "sha512": "lFIdxgGDA5iYkUMRFOze7BGLcdpoLFbR+a20kc1W7NepvzU7ejtxtWOg9RvgG7kb9tBoJ3ONYOK6kLil/dgF1w==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/3.1.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/SixLabors.ImageSharp.props",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.3.1.4.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
+      ]
+    },
+    "System.Buffers/4.4.0": {
+      "sha512": "AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
+      "type": "package",
+      "path": "system.buffers/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.1/System.Buffers.dll",
+        "lib/netstandard1.1/System.Buffers.xml",
+        "lib/netstandard2.0/System.Buffers.dll",
+        "lib/netstandard2.0/System.Buffers.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.1/System.Buffers.dll",
+        "ref/netstandard1.1/System.Buffers.xml",
+        "ref/netstandard2.0/System.Buffers.dll",
+        "ref/netstandard2.0/System.Buffers.xml",
+        "system.buffers.4.4.0.nupkg.sha512",
+        "system.buffers.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Numerics.Vectors/4.4.0": {
+      "sha512": "UiLzLW+Lw6HLed1Hcg+8jSRttrbuXv7DANVj0DkL9g6EnnzbL75EB7EWsw5uRbhxd/4YdG8li5XizGWepmG3PQ==",
+      "type": "package",
+      "path": "system.numerics.vectors/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Numerics.Vectors.dll",
+        "lib/net46/System.Numerics.Vectors.xml",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.0/System.Numerics.Vectors.dll",
+        "lib/netstandard1.0/System.Numerics.Vectors.xml",
+        "lib/netstandard2.0/System.Numerics.Vectors.dll",
+        "lib/netstandard2.0/System.Numerics.Vectors.xml",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Numerics.Vectors.dll",
+        "ref/net46/System.Numerics.Vectors.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/System.Numerics.Vectors.dll",
+        "ref/netstandard1.0/System.Numerics.Vectors.xml",
+        "ref/netstandard2.0/System.Numerics.Vectors.dll",
+        "ref/netstandard2.0/System.Numerics.Vectors.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.numerics.vectors.4.4.0.nupkg.sha512",
+        "system.numerics.vectors.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+      "sha512": "9dLLuBxr5GNmOfl2jSMcsHuteEg32BEfUotmmUkmZjpR3RpVHE8YQwt0ow3p6prwA1ME8WqDVZqrr8z6H8G+Kw==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Vortice.D3DCompiler/2.2.0": {
+      "sha512": "ARxozSyG56Io80swqmdpMrEmvNTvRGPwh/JmAiW2YuyeSnOzeiY8tgQ9dXA1D1H50gyTTTi0CcRy6G2b1KhQcg==",
+      "type": "package",
+      "path": "vortice.d3dcompiler/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Vortice.D3DCompiler.BindMapping.xml",
+        "build/Vortice.D3DCompiler.props",
+        "buildMultiTargeting/Vortice.D3DCompiler.props",
+        "lib/net6.0/Vortice.D3DCompiler.dll",
+        "lib/net6.0/Vortice.D3DCompiler.pdb",
+        "lib/net6.0/Vortice.D3DCompiler.xml",
+        "lib/netstandard2.0/Vortice.D3DCompiler.dll",
+        "lib/netstandard2.0/Vortice.D3DCompiler.pdb",
+        "lib/netstandard2.0/Vortice.D3DCompiler.xml",
+        "vortice.d3dcompiler.2.2.0.nupkg.sha512",
+        "vortice.d3dcompiler.nuspec"
+      ]
+    },
+    "Vortice.Direct3D11/2.2.0": {
+      "sha512": "mWnwsei5wIrYE43GWV9ATvQMo7BsQZKjZgO7MvXvyB9qJMJ5gRlpEeSypbja4IECil2N+PCP+HrYuPGw5yeSxw==",
+      "type": "package",
+      "path": "vortice.direct3d11/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Vortice.Direct3D11.BindMapping.xml",
+        "build/Vortice.Direct3D11.props",
+        "buildMultiTargeting/Vortice.Direct3D11.props",
+        "lib/net6.0/Vortice.Direct3D11.dll",
+        "lib/net6.0/Vortice.Direct3D11.pdb",
+        "lib/net6.0/Vortice.Direct3D11.xml",
+        "lib/netstandard2.0/Vortice.Direct3D11.dll",
+        "lib/netstandard2.0/Vortice.Direct3D11.pdb",
+        "lib/netstandard2.0/Vortice.Direct3D11.xml",
+        "vortice.direct3d11.2.2.0.nupkg.sha512",
+        "vortice.direct3d11.nuspec"
+      ]
+    },
+    "Vortice.DirectX/2.2.0": {
+      "sha512": "9WfX/vYE5h4RyVsHo58aJRVJ8CuT3sXPvNNos+UWaW5lufNw/qwTVnEjW2HtGpleHEkaZ2DxGhRIU6eMRxmrgw==",
+      "type": "package",
+      "path": "vortice.directx/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Vortice.DirectX.BindMapping.xml",
+        "build/Vortice.DirectX.props",
+        "buildMultiTargeting/Vortice.DirectX.props",
+        "lib/net6.0/Vortice.DirectX.dll",
+        "lib/net6.0/Vortice.DirectX.pdb",
+        "lib/net6.0/Vortice.DirectX.xml",
+        "lib/net7.0/Vortice.DirectX.dll",
+        "lib/net7.0/Vortice.DirectX.pdb",
+        "lib/net7.0/Vortice.DirectX.xml",
+        "lib/netstandard2.0/Vortice.DirectX.dll",
+        "lib/netstandard2.0/Vortice.DirectX.pdb",
+        "lib/netstandard2.0/Vortice.DirectX.xml",
+        "vortice.directx.2.2.0.nupkg.sha512",
+        "vortice.directx.nuspec"
+      ]
+    },
+    "Vortice.DXGI/2.2.0": {
+      "sha512": "aMAT/R1PHW1jAajEKrM0SdmvzylH4TofKw55vpWAIP2eBFfS9VHO23x1SV/UZDc9oIb+HozOEwWp2f9nNizlQQ==",
+      "type": "package",
+      "path": "vortice.dxgi/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Vortice.DXGI.BindMapping.xml",
+        "build/Vortice.DXGI.props",
+        "buildMultiTargeting/Vortice.DXGI.props",
+        "lib/net6.0/Vortice.DXGI.dll",
+        "lib/net6.0/Vortice.DXGI.pdb",
+        "lib/net6.0/Vortice.DXGI.xml",
+        "lib/netstandard2.0/Vortice.DXGI.dll",
+        "lib/netstandard2.0/Vortice.DXGI.pdb",
+        "lib/netstandard2.0/Vortice.DXGI.xml",
+        "vortice.dxgi.2.2.0.nupkg.sha512",
+        "vortice.dxgi.nuspec"
+      ]
+    },
+    "Vortice.Mathematics/1.6.2": {
+      "sha512": "yXz1dHDOP7sfF+t0KtPAyh16xpbBkwJalvBfsEl5WMvf/59OIkksu/L4lK2DxdG9E6UsBpxwjmkNNPNHHPkqJg==",
+      "type": "package",
+      "path": "vortice.mathematics/1.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/Vortice.Mathematics.dll",
+        "lib/net6.0/Vortice.Mathematics.pdb",
+        "lib/net6.0/Vortice.Mathematics.xml",
+        "lib/net7.0-windows10.0.19041/Vortice.Mathematics.dll",
+        "lib/net7.0-windows10.0.19041/Vortice.Mathematics.pdb",
+        "lib/net7.0-windows10.0.19041/Vortice.Mathematics.xml",
+        "lib/net7.0/Vortice.Mathematics.dll",
+        "lib/net7.0/Vortice.Mathematics.pdb",
+        "lib/net7.0/Vortice.Mathematics.xml",
+        "vortice.mathematics.1.6.2.nupkg.sha512",
+        "vortice.mathematics.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "ClickableTransparentOverlay >= 6.2.1",
+      "ImGui.NET.Docking >= 1.75.0",
+      "Memory.dll.x64 >= 1.2.27",
+      "SixLabors.ImageSharp >= 3.1.4",
+      "Vortice.Mathematics >= 1.6.2"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\leong\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
+      "projectName": "VoodooVinceToolbox6",
+      "projectPath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
+      "packagesPath": "C:\\Users\\leong\\.nuget\\packages\\",
+      "outputPath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\leong\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "ClickableTransparentOverlay": {
+            "target": "Package",
+            "version": "[6.2.1, )"
+          },
+          "ImGui.NET.Docking": {
+            "target": "Package",
+            "version": "[1.75.0, )"
+          },
+          "Memory.dll.x64": {
+            "target": "Package",
+            "version": "[1.2.27, )"
+          },
+          "SixLabors.ImageSharp": {
+            "target": "Package",
+            "version": "[3.1.4, )"
+          },
+          "Vortice.Mathematics": {
+            "target": "Package",
+            "version": "[1.6.2, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[6.0.21, 6.0.21]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.413\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
+      }
+    }
+  }
+}

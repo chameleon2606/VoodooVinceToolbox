@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "xC17NBFSPsscff84bINVQCnrjaVSg4gbAls2F7jKzvAMFXtcimR11CRQhRdylD2secMgdhBGPDnb+PiszWEzEQ==",
+  "success": true,
+  "projectFilePath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leong\\.nuget\\packages\\clickabletransparentoverlay\\6.2.1\\clickabletransparentoverlay.6.2.1.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\imgui.net\\1.89.2\\imgui.net.1.89.2.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\imgui.net.docking\\1.75.0\\imgui.net.docking.1.75.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\memory.dll.x64\\1.2.27\\memory.dll.x64.1.2.27.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\sharpgen.runtime\\2.0.0-beta.11\\sharpgen.runtime.2.0.0-beta.11.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\sharpgen.runtime.com\\2.0.0-beta.11\\sharpgen.runtime.com.2.0.0-beta.11.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\sixlabors.imagesharp\\3.1.4\\sixlabors.imagesharp.3.1.4.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.d3dcompiler\\2.2.0\\vortice.d3dcompiler.2.2.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.direct3d11\\2.2.0\\vortice.direct3d11.2.2.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.directx\\2.2.0\\vortice.directx.2.2.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.dxgi\\2.2.0\\vortice.dxgi.2.2.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.mathematics\\1.6.2\\vortice.mathematics.1.6.2.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.21\\microsoft.netcore.app.runtime.win-x64.6.0.21.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.21\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.21.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.21\\microsoft.aspnetcore.app.runtime.win-x64.6.0.21.nupkg.sha512"
+  ],
+  "logs": []
+}
