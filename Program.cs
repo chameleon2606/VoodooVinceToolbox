@@ -6,6 +6,8 @@ using ClickableTransparentOverlay;
 using Memory;
 using System.Runtime.InteropServices;
 
+//dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true --output "C:\Users\leong\Desktop\build"
+
 
 namespace AltToolbox
 {
@@ -263,9 +265,15 @@ namespace AltToolbox
         {
             ImGui.Begin("Voodoo Vince Toolbox");
             ImGui.TextColored(new Vector4(1,0,0,1), "Game not found!");
-            if (ImGui.Button("Refresh"))
+            ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
+            if (ImGui.Button("refresh"))
             {
                 FindProcess();
+            }
+            ImGui.SameLine();
+            if (ImGui.Button("X"))
+            {
+                Environment.Exit(0);
             }
             ImGui.End();
         }
