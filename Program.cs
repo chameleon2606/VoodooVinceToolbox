@@ -163,7 +163,7 @@ namespace AltToolbox
             if (ImGui.CollapsingHeader("Speedrun tools"))
             {
                 ImGui.PlotLines("",ref Utitily.GetSpeedList()[0], Utitily.GetSpeedList().Length, 
-                    2, "velocity", 0, 1.35f, new Vector2(ImGui.GetWindowWidth(), 50));
+                    2, "velocity", 0, 1.35f, new Vector2(ImGui.GetWindowWidth() * .99f, 50));
                 
                 if (Utitily.GetHighestJumpValue() > .4f) _jumpHeight = Utitily.GetHighestJumpValue();
                 ImGui.ProgressBar(_jumpHeight / 1.28f, new Vector2(0,15), "jump");
@@ -205,8 +205,11 @@ namespace AltToolbox
                     var test = i < beads / 42;
                     ImGui.RadioButton("", test);
                     ImGui.SameLine();
+                    if (i == maxBeads / 42 - 1)
+                    {
+                        ImGui.Text("Power skulls");
+                    }
                 }
-                ImGui.Text("Power skulls");
                 
                 ImGui.Spacing();
                 
