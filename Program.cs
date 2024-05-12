@@ -104,7 +104,6 @@ namespace AltToolbox
         private static void DrawMenu()
         {
             ImGui.Begin("Vince Toolbox");
-            //ImGui.DockSpaceOverViewport();
             //ImGui.ShowDemoWindow();
             if (prevHearts < Hearts) currentLevel = Utitily.GetCurrentLevel();
             ImGui.Text(currentLevel);
@@ -199,7 +198,15 @@ namespace AltToolbox
                 var beads = M.ReadMemory<int>(BeadsPointer);
                 var maxBeads = M.ReadMemory<int>(MaxBeadsPointer);
                 ImGui.Text("Beads");
-                ImGui.ProgressBar((float)beads / maxBeads, new Vector2(0, 15), beads+" / "+maxBeads);
+                var frac = beads % 42;
+                ImGui.ProgressBar((float)frac / 42, new Vector2(0,15), frac + " / " + 42);
+                for (int i = 0; i < maxBeads/42; i++)
+                {
+                    var test = i < beads / 42;
+                    ImGui.RadioButton("", test);
+                    ImGui.SameLine();
+                }
+                ImGui.Text("Power skulls");
                 
                 ImGui.Spacing();
                 
@@ -217,6 +224,8 @@ namespace AltToolbox
                 ImGui.Text("Skull Pages");
                 ImGui.ProgressBar(skullPages / (float)(skullPages + skullRemain), new Vector2(0,15), skullPages + " / " +
                     (skullPages + skullRemain));
+
+                ImGui.Spacing();
                 
                 ImGui.Text("Game resolution: " + M.ReadMemory<int>(ScreenXPointer)+ " x "+M.ReadMemory<int>(ScreenYPointer));
                 ImGui.TreePop();
