@@ -7,4 +7,4 @@ how to use this fine piece of software:
 -click on the downloaded .exe file<br>
 -and then maybe it works<br>
 
-![grafik](https://github.com/chameleon2606/VoodooVinceToolbox/assets/62313395/1c033df1-2321-40f3-8fa1-5633c6a6a68e)
+![preview.png](preview.png)
