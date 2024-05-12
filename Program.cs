@@ -18,9 +18,9 @@ namespace AltToolbox
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         const int SW_HIDE = 0;
-        const int SW_SHOW = 5;
         
-        private static bool _enableOverlay;
+        private static bool _enableAlttab;
+        private static bool _isGameRunning;
         
         public static Mem M;
         private const string VinceAddress = "base+0076320C";
@@ -88,8 +88,15 @@ namespace AltToolbox
 
         protected override void Render()
         {
-            ImGui.SetNextWindowSize(new Vector2(400, 900));
-            DrawMenu();
+            ImGui.SetNextWindowSize(new Vector2(400, 900), ImGuiCond.Once);
+            if (_isGameRunning)
+            {
+                DrawMenu();
+            }
+            else
+            {
+                ClosedGame();
+            }
         }
 
         private static void DrawMenu()
@@ -116,27 +123,6 @@ namespace AltToolbox
                     ImGui.Text("Z: "+M.ReadFloat(CamZPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.TreePop();
                     
-                    /*
-                    if(ImGui.TreeNode("Move camera"))
-                    {
-                        float test = 0;
-                        float test2 = 0;
-                        float test3 = 0;
-                        if (ImGui.DragFloat("Cam X", ref test, 0.005f, -.1f, .1f))
-                        {
-                            M.WriteMemory(CamXPointer, "float", (M.ReadFloat(CamXPointer) + test).ToString(CultureInfo.InvariantCulture));
-                        }
-                        if (ImGui.DragFloat("Cam Y", ref test2, 0.005f, -.1f,.1f))
-                        {
-                            M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
-                        }
-                        if (ImGui.DragFloat("Cam Z", ref test3, 0.005f, -.1f, .1f))
-                        {
-                            M.WriteMemory(CamZPointer, "float", (M.ReadFloat(CamZPointer) + test3).ToString(CultureInfo.InvariantCulture));
-                        }
-                        ImGui.TreePop();
-                    }
-                    */
                     if (ImGui.TreeNode("Move New"))
                     {
                         ImGui.Button("manual\ncamera\ndrag", new Vector2(100, 100));
@@ -184,7 +170,7 @@ namespace AltToolbox
                 ImGui.Checkbox("grounded", ref _grounded);
                 _grounded = M.ReadMemory<int>(GroundedPointer) == 1;
                 
-                ImGui.Checkbox("Alt-Tab mode", ref _enableOverlay);
+                ImGui.Checkbox("Alt-Tab mode", ref _enableAlttab);
                 
                 if (ImGui.Button("save position", new Vector2(110, 50)))
                 {
@@ -234,14 +220,21 @@ namespace AltToolbox
                 ImGui.TreePop();
             }
             
-            ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 36, 20));
+            ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
+            if (ImGui.Button("refresh"))
+            {
+                FindProcess();
+            }
+            ImGui.SameLine();
             if (ImGui.Button("X"))
             {
                 Environment.Exit(0);
             }
             
-            if (_enableOverlay && Paused != 0)
+            if (_enableAlttab && Paused != 0 && currentLevel != "Voodoo Shop")
             {
+                Console.WriteLine(Utitily.GetCurrentLevel());
+                    
                 M.WriteMemory(PausePointer, "int", "0");
                 Console.WriteLine("pause disabled");
             }
@@ -266,22 +259,32 @@ namespace AltToolbox
             ImGui.End();
         }
 
+        private static void ClosedGame()
+        {
+            ImGui.Begin("Voodoo Vince Toolbox");
+            ImGui.TextColored(new Vector4(1,0,0,1), "Game not found!");
+            if (ImGui.Button("Refresh"))
+            {
+                FindProcess();
+            }
+            ImGui.End();
+        }
+
         public static void Main(string[] args)
         {
             var handle = GetConsoleWindow();
-            
             ShowWindow(handle, SW_HIDE);
             
             M = new Mem();
-            Program program = new Program();
-            
-            program.Start();
             FindProcess();
+            
+            Program program = new Program();
+            program.Start();
         }
 
         private static void FindProcess()
         {
-            if (!M.OpenProcess("Vince")) Console.WriteLine("Game not found");
+            _isGameRunning = M.OpenProcess("Vince");
         }
 
     }
