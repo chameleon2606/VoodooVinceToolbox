@@ -330,8 +330,6 @@ namespace AltToolbox
             
             Program program = new Program();
             program.Start();
-
-            LevelList.GetLevel();
         }
 
         private static void FindProcess()
