@@ -82,6 +82,11 @@ namespace AltToolbox
         
         private static float _jumpHeight;
         private static bool _grounded;
+        private static bool _isHeightLocked;
+        private static float prevX = 0;
+        private static float prevY = 0;
+        private static float prevZ = 0;
+        private static float newVal = 0;
 
         protected override void Render()
         {
@@ -122,7 +127,7 @@ namespace AltToolbox
                     if (ImGui.TreeNode("Move Camera"))
                     {
                         ImGui.Button("manual\ncamera\ndrag", new Vector2(100, 100));
-                        if (ImGui.IsItemActive())
+                        if (ImGui.IsItemActive() && Hp > 0)
                         {
                             var valueRaw = ImGui.GetMouseDragDelta(0, 0.0f);
                             
@@ -134,10 +139,15 @@ namespace AltToolbox
                         }
                         float test2 = 0;
                         ImGui.PushItemWidth(100);
-                        if (ImGui.DragFloat("", ref test2, 0.005f, -.1f,.1f, "height drag"))
+                        ImGui.SameLine();
+                        if (ImGui.VSliderFloat("", new Vector2(20, 100), ref test2, -.1f, .1f, "Y"))
                         {
                             M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
                         }
+                        //if (ImGui.DragFloat("", ref test2, 0.005f, -.1f,.1f, "height drag", ImGuiSliderFlags.NoInput) && Hp > 0)
+                        //{
+                        //    M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
+                        //}
                         ImGui.PushItemWidth(ImGui.GetWindowWidth() * 0.65f);
                         ImGui.TreePop();
                     }
@@ -152,6 +162,33 @@ namespace AltToolbox
                     Utitily.GiveHp(99);
                 }
                 ImGui.Checkbox("Lock HP", ref _lockHp);
+                float newHeight = 0;
+                if (ImGui.VSliderFloat("", new Vector2(30, 100), ref newHeight, -.1f, .1f))
+                {
+                    if (!_isHeightLocked)
+                    {
+                        prevY = M.ReadFloat(VinceYPointer);
+                    }
+
+                    prevY += newHeight;
+                    _isHeightLocked = true;
+                    prevX = M.ReadFloat(VinceXPointer);
+                    prevZ = M.ReadFloat(VinceZPointer);
+                }
+                
+                if (_isHeightLocked)
+                {
+                    if (Paused == 0)
+                    {
+                        M.WriteMemory(VinceYPointer, "float", prevY.ToString(CultureInfo.InvariantCulture));
+                        if (Vector2.Distance(new Vector2(prevX, prevZ),
+                                new Vector2(M.ReadFloat(VinceXPointer), M.ReadFloat(VinceZPointer))) > 1)
+                        {
+                            _isHeightLocked = false;
+                        }
+                    }
+                }
+                
                 ImGui.Unindent();
             }
 

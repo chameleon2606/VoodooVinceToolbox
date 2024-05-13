@@ -23,6 +23,8 @@ public class Utitily
     private static float highestYValue;
     private static bool recordingHeight;
     private static float finalValue;
+
+    private static bool heightCaptured;
     
     public static void GetPosition()
     {
@@ -36,7 +38,6 @@ public class Utitily
     }
     public static void SetPosition()
     {
-        
         if (Program.Paused > 0)
         {
             Program.buffering = true;
@@ -100,5 +101,7 @@ public class Utitily
         prevGround = grounded;
         return highestYValue;
     }
+
+    
     
 }
