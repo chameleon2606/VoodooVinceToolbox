@@ -26,13 +26,13 @@ public class Utitily
     
     public static void GetPosition()
     {
-        _localPosX = Program.M.ReadFloat(Program.VinceXPointer, "", false);
-        _localPosY = Program.M.ReadFloat(Program.VinceYPointer, "", false);
-        _localPosZ = Program.M.ReadFloat(Program.VinceZPointer, "", false);
+        _localPosX = Program.M.ReadFloat(Program.VinceXPointer);
+        _localPosY = Program.M.ReadFloat(Program.VinceYPointer) + 0.01f;
+        _localPosZ = Program.M.ReadFloat(Program.VinceZPointer);
         
-        _localCamX = Program.M.ReadFloat(Program.CamXPointer, "", false);
-        _localCamY = Program.M.ReadFloat(Program.CamYPointer, "", false);
-        _localCamZ = Program.M.ReadFloat(Program.CamZPointer, "", false);
+        _localCamX = Program.M.ReadFloat(Program.CamXPointer);
+        _localCamY = Program.M.ReadFloat(Program.CamYPointer);
+        _localCamZ = Program.M.ReadFloat(Program.CamZPointer);
     }
     public static void SetPosition()
     {
@@ -93,7 +93,7 @@ public class Utitily
     
     public static float GetHighestJumpValue()
     {
-        var vinceY = Program.M.ReadFloat(Program.VinceYPointer, "", false);
+        var vinceY = Program.M.ReadFloat(Program.VinceYPointer,"",false);
         var grounded = Program.M.ReadMemory<int>(Program.GroundedPointer);
         
         if (prevGround != grounded && prevGround == 1)

@@ -66,13 +66,8 @@ namespace AltToolbox
         public const string LevelIndex1Pointer = LevelIndex1Address + ",4";
         public const string LevelIndex2Pointer = LevelIndex2Address + ",4";
         public const string LevelIndex3Pointer = LevelIndex3Address + ",4";
-
-        private static bool _savePosButton;
-        private static bool _writePosButton;
-        private static bool _giveLivesButton;
+        
         private static bool _lockHp;
-        private static bool _closeButton;
-        private static bool _getLevelButton;
 
         public static int Paused => M.ReadMemory<int>(PausePointer);
         public static int Hearts => M.ReadMemory<int>(HeartsPointer);
