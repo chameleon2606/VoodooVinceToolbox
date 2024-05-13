@@ -57,24 +57,6 @@ public class Utitily
         Program.M.WriteMemory(Program.HeartsPointer, "int", amount.ToString());
         Program.M.WriteMemory(Program.HeartsUiPointer, "int", Program.Hearts.ToString());
     }
-    public static string GetCurrentLevel()
-    {
-        using var parser = new TextFieldParser(@"levels.csv");
-        parser.TextFieldType = FieldType.Delimited;
-        parser.SetDelimiters(",");
-        while (!parser.EndOfData)
-        {
-            var fields = parser.ReadFields();
-            if (fields == null || !fields.Any(unused =>
-                    fields[1] == Program.M.ReadMemory<int>(Program.LevelIndex1Pointer).ToString() &&
-                    fields[2] == Program.M.ReadMemory<int>(Program.LevelIndex2Pointer).ToString() &&
-                    fields[3] == Program.M.ReadMemory<int>(Program.LevelIndex3Pointer).ToString())) continue;
-            Console.WriteLine("get level");
-            return fields[0];
-        }
-
-        return "Level not found!";
-    }
 
     public static float[] GetSpeedList()
     {

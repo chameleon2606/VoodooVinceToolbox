@@ -100,7 +100,7 @@ namespace AltToolbox
         {
             ImGui.Begin("Vince Toolbox");
             //ImGui.ShowDemoWindow();
-            if (prevHearts < Hearts) currentLevel = Utitily.GetCurrentLevel();
+            if (prevHearts < Hearts) LevelList.GetLevel();
             ImGui.Text(currentLevel);
             ImGui.Text(TimeSpan.FromSeconds(M.ReadFloat(TimerPointer)).ToString(@"h\:mm\:ss\:ff"));
             if (ImGui.CollapsingHeader("Coordiantes"))
@@ -112,14 +112,14 @@ namespace AltToolbox
                     ImGui.Text("Z: "+M.ReadFloat(VinceZPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.TreePop();
                 }
-                if (ImGui.TreeNode("Cam Position"))
+                if (ImGui.TreeNode("Camera Position"))
                 {
                     ImGui.Text("X: "+M.ReadFloat(CamXPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.Text("Y: "+M.ReadFloat(CamYPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.Text("Z: "+M.ReadFloat(CamZPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.TreePop();
                     
-                    if (ImGui.TreeNode("Move New"))
+                    if (ImGui.TreeNode("Move Camera"))
                     {
                         ImGui.Button("manual\ncamera\ndrag", new Vector2(100, 100));
                         if (ImGui.IsItemActive())
@@ -242,8 +242,6 @@ namespace AltToolbox
             
             if (_enableAlttab && Paused != 0 && currentLevel != "Voodoo Shop")
             {
-                Console.WriteLine(Utitily.GetCurrentLevel());
-                    
                 M.WriteMemory(PausePointer, "int", "0");
                 Console.WriteLine("pause disabled");
             }
@@ -295,6 +293,8 @@ namespace AltToolbox
             
             Program program = new Program();
             program.Start();
+
+            LevelList.GetLevel();
         }
 
         private static void FindProcess()
