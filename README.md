@@ -7,4 +7,4 @@ how to use this fine piece of software:
 -click on the downloaded .exe file<br>
 -and then maybe it works<br>
 
-![img.png](img.png)
+![preview.png](preview.png)

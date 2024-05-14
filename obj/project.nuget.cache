@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dtZCRpYQMNvGyc/4srlDKGv/wgHEH260tJ/K4iuvktfzVtOu27a6xN2z4PGyJv0sZpyL1LM9ILPey7BuVAo9EQ==",
+  "dgSpecHash": "8YhmHuKXs6ejRX/1OvHog0XHmjl7Ldg4bMu8Wep7wrDIujjKM+zmLhY2Xo+wSkpY1GQmgDHLe2o6QrzeHBwTAg==",
   "success": true,
   "projectFilePath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
   "expectedPackageFiles": [
@@ -18,11 +18,7 @@
     "C:\\Users\\leong\\.nuget\\packages\\vortice.direct3d11\\2.2.0\\vortice.direct3d11.2.2.0.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\vortice.directx\\2.2.0\\vortice.directx.2.2.0.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\vortice.dxgi\\2.2.0\\vortice.dxgi.2.2.0.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\vortice.mathematics\\1.6.2\\vortice.mathematics.1.6.2.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.21\\microsoft.netcore.app.runtime.win-x64.6.0.21.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.21\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.21.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.21\\microsoft.aspnetcore.app.runtime.win-x64.6.0.21.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.21\\microsoft.netcore.app.crossgen2.win-x64.6.0.21.nupkg.sha512"
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.mathematics\\1.6.2\\vortice.mathematics.1.6.2.nupkg.sha512"
   ],
   "logs": []
 }
