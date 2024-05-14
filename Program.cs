@@ -127,7 +127,7 @@ namespace AltToolbox
             {
                 if (ImGui.TreeNode("Vince Position"))
                 {
-                    ImGui.Checkbox("X: ", ref _lockX);
+                    ImGui.Checkbox("X:", ref _lockX);
                     if (_lockX)
                     {
                         if (!_isXCaptured)
@@ -148,7 +148,7 @@ namespace AltToolbox
                     ImGui.SameLine();
                     ImGui.Text(M.ReadFloat(VinceXPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     
-                    ImGui.Checkbox("Y: ", ref _lockY);
+                    ImGui.Checkbox("Y:", ref _lockY);
                     if (_lockY)
                     {
                         if (!_isYCaptured)
@@ -169,7 +169,7 @@ namespace AltToolbox
                     ImGui.SameLine();
                     ImGui.Text(M.ReadFloat(VinceYPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     
-                    ImGui.Checkbox("Z: ", ref _lockZ);
+                    ImGui.Checkbox("Z:", ref _lockZ);
                     if (_lockZ)
                     {
                         if (!_isZCaptured)
@@ -216,7 +216,7 @@ namespace AltToolbox
                             float test2 = 0;
                             ImGui.PushItemWidth(100);
                             ImGui.SameLine();
-                            if (ImGui.VSliderFloat("", new Vector2(20, 100), ref test2, -.1f, .1f, "Y"))
+                            if (ImGui.VSliderFloat("##CamHeight", new Vector2(20, 100), ref test2, -.1f, .1f, "Y"))
                             {
                                 M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
                             }
@@ -236,7 +236,7 @@ namespace AltToolbox
                 }
                 ImGui.Checkbox("Lock HP", ref _lockHp);
                 float newHeight = 0;
-                if (ImGui.VSliderFloat("", new Vector2(30, 100), ref newHeight, -.1f, .1f))
+                if (ImGui.VSliderFloat("Move up Vince", new Vector2(30, 100), ref newHeight, -.1f, .1f, ""))
                 {
                     if (!_isHeightLocked)
                     {
@@ -267,7 +267,7 @@ namespace AltToolbox
 
             if (ImGui.CollapsingHeader("Speedrun tools"))
             {
-                ImGui.PlotLines("",ref Utitily.GetSpeedList()[0], Utitily.GetSpeedList().Length, 
+                ImGui.PlotLines("velocity",ref Utitily.GetSpeedList()[0], Utitily.GetSpeedList().Length, 
                     2, "velocity", 0, 1.35f, new Vector2(ImGui.GetWindowWidth() * .99f, 50));
                 
                 if (Utitily.GetHighestJumpValue() > .4f) _jumpHeight = Utitily.GetHighestJumpValue();
@@ -342,25 +342,81 @@ namespace AltToolbox
                 ImGui.Spacing();
                 
                 ImGui.Text("Game resolution: " + M.ReadMemory<int>(ScreenXPointer)+ " x "+M.ReadMemory<int>(ScreenYPointer));
-                ImGui.TreePop();
             }
 
-            /*
+            
             if (ImGui.CollapsingHeader("Teleports"))
             {
-                if(ImGui.Button("teleport to cutscene"))
+                switch (CurrentLevel)
                 {
-                    M.WriteMemory(VinceXPointer, "float", "-315");
-                    M.WriteMemory(VinceYPointer, "float", "460");
-                    M.WriteMemory(VinceZPointer, "float", "3");
+                    case "Inside the Kosmobot":
+                        if (ImGui.Button("teleport to cutscene"))
+                        {
+                            M.WriteMemory(VinceXPointer, "float", "-315");
+                            M.WriteMemory(VinceYPointer, "float", "460");
+                            M.WriteMemory(VinceZPointer, "float", "3");
                     
-                    M.WriteMemory(CamXPointer, "float", "-315");
-                    M.WriteMemory(CamYPointer, "float", "460");
-                    M.WriteMemory(CamZPointer, "float", "3");
+                            M.WriteMemory(CamXPointer, "float", "-315");
+                            M.WriteMemory(CamYPointer, "float", "460");
+                            M.WriteMemory(CamZPointer, "float", "3");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case "Gatekeeper Jam":
+                        if (ImGui.Button("teleport to skip practice"))
+                        {
+                            M.WriteMemory(VinceXPointer, "float", "12.5");
+                            M.WriteMemory(VinceYPointer, "float", "1.2");
+                            M.WriteMemory(VinceZPointer, "float", "-10.4");
+                    
+                            M.WriteMemory(CamXPointer, "float", "11.7");
+                            M.WriteMemory(CamYPointer, "float", "1.9");
+                            M.WriteMemory(CamZPointer, "float", "-10.8");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case "Earth, Water & Wood":
+                        if (ImGui.Button("teleport to lever platform"))
+                        {
+                            M.WriteMemory(VinceXPointer, "float", "7.4");
+                            M.WriteMemory(VinceYPointer, "float", "3.8");
+                            M.WriteMemory(VinceZPointer, "float", "25.5");
+                    
+                            M.WriteMemory(CamXPointer, "float", "7.1");
+                            M.WriteMemory(CamYPointer, "float", "4.5");
+                            M.WriteMemory(CamZPointer, "float", "24.7");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case "Finger's Land O' Rides":
+                        if (ImGui.Button("teleport to tent"))
+                        {
+                            M.WriteMemory(VinceXPointer, "float", "18.1");
+                            M.WriteMemory(VinceYPointer, "float", "-0.7");
+                            M.WriteMemory(VinceZPointer, "float", "0");
+                    
+                            M.WriteMemory(CamXPointer, "float", "18.7");
+                            M.WriteMemory(CamYPointer, "float", "0");
+                            M.WriteMemory(CamZPointer, "float", "-0.6");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case "Bumper Car Bump Off":
+                        if (ImGui.Button("teleport to plane"))
+                        {
+                            M.WriteMemory(VinceXPointer, "float", "-12");
+                            M.WriteMemory(VinceYPointer, "float", "9.5");
+                            M.WriteMemory(VinceZPointer, "float", "-56");
+                    
+                            M.WriteMemory(CamXPointer, "float", "-12.2");
+                            M.WriteMemory(CamYPointer, "float", "10.2");
+                            M.WriteMemory(CamZPointer, "float", "-56.9");
+                            ImGui.TreePop();
+                        }
+                        break;
                 }
-                ImGui.TreePop();
             }
-            */
+            
             ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
             if (ImGui.Button("refresh"))
             {
