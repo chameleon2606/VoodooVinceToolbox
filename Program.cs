@@ -71,22 +71,35 @@ namespace AltToolbox
 
         public static int Paused => M.ReadMemory<int>(PausePointer);
         public static int Hearts => M.ReadMemory<int>(HeartsPointer);
-        public static int Hp => M.ReadMemory<int>(HpPointer);
-        private static int prevHp;
-        private static int prevHearts;
-        private static int prevPause;
+        private static int Hp => M.ReadMemory<int>(HpPointer);
+        private static int _prevHp;
+        private static int _prevPause;
 
-        public static bool buffering;
+        public static bool Buffering;
 
-        public static string currentLevel;
+        public static string CurrentLevel = "";
         
         private static float _jumpHeight;
         private static bool _grounded;
         private static bool _isHeightLocked;
-        private static float prevX = 0;
-        private static float prevY = 0;
-        private static float prevZ = 0;
-        private static float newVal = 0;
+        private static float _prevX = 0;
+        private static float _prevY = 0;
+        private static float _prevZ = 0;
+        private static float _prevTime = 0;
+        
+        private static bool _lockX;
+        private static float _savedXPos = 0;
+        private static bool _isXCaptured;
+        
+        private static bool _lockY;
+        private static float _savedYPos = 0;
+        private static bool _isYCaptured;
+        
+        private static bool _lockZ;
+        private static float _savedZPos = 0;
+        private static bool _isZCaptured;
+        private static bool test;
+        
 
         protected override void Render()
         {
@@ -105,16 +118,77 @@ namespace AltToolbox
         {
             ImGui.Begin("Vince Toolbox");
             //ImGui.ShowDemoWindow();
-            if (prevHearts < Hearts) LevelList.GetLevel();
-            ImGui.Text(currentLevel);
+            if (M.ReadFloat(TimerPointer) != 0 && _prevTime == 0) LevelList.GetLevel();
+            _prevTime = M.ReadFloat(TimerPointer);
+            
+            ImGui.Text(CurrentLevel);
             ImGui.Text(TimeSpan.FromSeconds(M.ReadFloat(TimerPointer)).ToString(@"h\:mm\:ss\:ff"));
             if (ImGui.CollapsingHeader("Coordiantes"))
             {
                 if (ImGui.TreeNode("Vince Position"))
                 {
-                    ImGui.Text("X: "+M.ReadFloat(VinceXPointer, "", false).ToString(CultureInfo.InvariantCulture));
-                    ImGui.Text("Y: "+M.ReadFloat(VinceYPointer, "", false).ToString(CultureInfo.InvariantCulture));
-                    ImGui.Text("Z: "+M.ReadFloat(VinceZPointer, "", false).ToString(CultureInfo.InvariantCulture));
+                    ImGui.Checkbox("X: ", ref _lockX);
+                    if (_lockX)
+                    {
+                        if (!_isXCaptured)
+                        {
+                            _savedXPos = M.ReadFloat(VinceXPointer);
+                            _isXCaptured = true;
+                            Console.WriteLine("X captured");
+                        }
+                        else
+                        {
+                            M.WriteMemory(VinceXPointer, "float", _savedXPos.ToString(CultureInfo.InvariantCulture));
+                        }
+                    }
+                    else
+                    {
+                        _isXCaptured = false;
+                    }
+                    ImGui.SameLine();
+                    ImGui.Text(M.ReadFloat(VinceXPointer, "", false).ToString(CultureInfo.InvariantCulture));
+                    
+                    ImGui.Checkbox("Y: ", ref _lockY);
+                    if (_lockY)
+                    {
+                        if (!_isYCaptured)
+                        {
+                            _savedYPos = M.ReadFloat(VinceYPointer);
+                            _isYCaptured = true;
+                            Console.WriteLine("height captured");
+                        }
+                        else
+                        {
+                            M.WriteMemory(VinceYPointer, "float", _savedYPos.ToString(CultureInfo.InvariantCulture));
+                        }
+                    }
+                    else
+                    {
+                        _isYCaptured = false;
+                    }
+                    ImGui.SameLine();
+                    ImGui.Text(M.ReadFloat(VinceYPointer, "", false).ToString(CultureInfo.InvariantCulture));
+                    
+                    ImGui.Checkbox("Z: ", ref _lockZ);
+                    if (_lockZ)
+                    {
+                        if (!_isZCaptured)
+                        {
+                            _savedZPos = M.ReadFloat(VinceZPointer);
+                            _isZCaptured = true;
+                            Console.WriteLine("Z captured");
+                        }
+                        else
+                        {
+                            M.WriteMemory(VinceZPointer, "float", _savedZPos.ToString(CultureInfo.InvariantCulture));
+                        }
+                    }
+                    else
+                    {
+                        _isZCaptured = false;
+                    }
+                    ImGui.SameLine();
+                    ImGui.Text(M.ReadFloat(VinceZPointer, "", false).ToString(CultureInfo.InvariantCulture));
                     ImGui.TreePop();
                 }
                 if (ImGui.TreeNode("Camera Position"))
@@ -127,28 +201,27 @@ namespace AltToolbox
                     if (ImGui.TreeNode("Move Camera"))
                     {
                         ImGui.Button("manual\ncamera\ndrag", new Vector2(100, 100));
-                        if (ImGui.IsItemActive() && Hp > 0)
+                        if (Hearts > 0)
                         {
-                            var valueRaw = ImGui.GetMouseDragDelta(0, 0.0f);
-                            
-                            M.WriteMemory(CamXPointer, "float", (M.ReadFloat(CamXPointer) +
-                                                                 (-valueRaw.X * 0.001f)).ToString(CultureInfo.InvariantCulture));
-                            
-                            M.WriteMemory(CamZPointer, "float", (M.ReadFloat(CamZPointer) + 
-                                                                 (valueRaw.Y * 0.001f)).ToString(CultureInfo.InvariantCulture));
+                            if (ImGui.IsItemActive() && Hearts > 0)
+                            {
+                                var valueRaw = ImGui.GetMouseDragDelta(0, 0.0f);
+                                
+                                M.WriteMemory(CamXPointer, "float", (M.ReadFloat(CamXPointer) +
+                                                                     (-valueRaw.X * 0.001f)).ToString(CultureInfo.InvariantCulture));
+                                
+                                M.WriteMemory(CamZPointer, "float", (M.ReadFloat(CamZPointer) + 
+                                                                     (valueRaw.Y * 0.001f)).ToString(CultureInfo.InvariantCulture));
+                            }
+                            float test2 = 0;
+                            ImGui.PushItemWidth(100);
+                            ImGui.SameLine();
+                            if (ImGui.VSliderFloat("", new Vector2(20, 100), ref test2, -.1f, .1f, "Y"))
+                            {
+                                M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
+                            }
+                            ImGui.PushItemWidth(ImGui.GetWindowWidth() * 0.65f);
                         }
-                        float test2 = 0;
-                        ImGui.PushItemWidth(100);
-                        ImGui.SameLine();
-                        if (ImGui.VSliderFloat("", new Vector2(20, 100), ref test2, -.1f, .1f, "Y"))
-                        {
-                            M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
-                        }
-                        //if (ImGui.DragFloat("", ref test2, 0.005f, -.1f,.1f, "height drag", ImGuiSliderFlags.NoInput) && Hp > 0)
-                        //{
-                        //    M.WriteMemory(CamYPointer, "float", (M.ReadFloat(CamYPointer) + test2).ToString(CultureInfo.InvariantCulture));
-                        //}
-                        ImGui.PushItemWidth(ImGui.GetWindowWidth() * 0.65f);
                         ImGui.TreePop();
                     }
                 }
@@ -167,21 +240,21 @@ namespace AltToolbox
                 {
                     if (!_isHeightLocked)
                     {
-                        prevY = M.ReadFloat(VinceYPointer);
+                        _prevY = M.ReadFloat(VinceYPointer);
                     }
 
-                    prevY += newHeight;
+                    _prevY += newHeight;
                     _isHeightLocked = true;
-                    prevX = M.ReadFloat(VinceXPointer);
-                    prevZ = M.ReadFloat(VinceZPointer);
+                    _prevX = M.ReadFloat(VinceXPointer);
+                    _prevZ = M.ReadFloat(VinceZPointer);
                 }
                 
                 if (_isHeightLocked)
                 {
                     if (Paused == 0)
                     {
-                        M.WriteMemory(VinceYPointer, "float", prevY.ToString(CultureInfo.InvariantCulture));
-                        if (Vector2.Distance(new Vector2(prevX, prevZ),
+                        M.WriteMemory(VinceYPointer, "float", _prevY.ToString(CultureInfo.InvariantCulture));
+                        if (Vector2.Distance(new Vector2(_prevX, _prevZ),
                                 new Vector2(M.ReadFloat(VinceXPointer), M.ReadFloat(VinceZPointer))) > 1)
                         {
                             _isHeightLocked = false;
@@ -205,6 +278,12 @@ namespace AltToolbox
                 
                 ImGui.Checkbox("Alt-Tab mode", ref _enableAlttab);
                 
+                if (_enableAlttab && Paused != 0 && CurrentLevel != "Voodoo Shop")
+                {
+                    M.WriteMemory(PausePointer, "int", "0");
+                    Console.WriteLine("pause disabled");
+                }
+                
                 if (ImGui.Button("save position", new Vector2(110, 50)))
                 {
                     Utitily.GetPosition();
@@ -220,10 +299,10 @@ namespace AltToolbox
             {
                 ImGui.Text("Hearts: "+M.ReadMemory<int>(HeartsPointer));
                 
-                var hp = M.ReadMemory<int>(HpPointer);
+                ImGui.Spacing();
                 var maxHp = M.ReadMemory<int>(MaxHpPointer);
-                ImGui.Text("HP");
-                ImGui.ProgressBar((float)hp / maxHp, new Vector2(0, 15), hp+" / "+maxHp);
+                ImGui.Text("Health");
+                ImGui.ProgressBar((float)Hp / maxHp, new Vector2(0, 15), Hp+" / "+maxHp);
                 
                 ImGui.Spacing();
                 
@@ -265,7 +344,23 @@ namespace AltToolbox
                 ImGui.Text("Game resolution: " + M.ReadMemory<int>(ScreenXPointer)+ " x "+M.ReadMemory<int>(ScreenYPointer));
                 ImGui.TreePop();
             }
-            
+
+            /*
+            if (ImGui.CollapsingHeader("Teleports"))
+            {
+                if(ImGui.Button("teleport to cutscene"))
+                {
+                    M.WriteMemory(VinceXPointer, "float", "-315");
+                    M.WriteMemory(VinceYPointer, "float", "460");
+                    M.WriteMemory(VinceZPointer, "float", "3");
+                    
+                    M.WriteMemory(CamXPointer, "float", "-315");
+                    M.WriteMemory(CamYPointer, "float", "460");
+                    M.WriteMemory(CamZPointer, "float", "3");
+                }
+                ImGui.TreePop();
+            }
+            */
             ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
             if (ImGui.Button("refresh"))
             {
@@ -277,28 +372,19 @@ namespace AltToolbox
                 Environment.Exit(0);
             }
             
-            if (_enableAlttab && Paused != 0 && currentLevel != "Voodoo Shop")
+            if (Buffering && _prevPause != Paused)
             {
-                M.WriteMemory(PausePointer, "int", "0");
-                Console.WriteLine("pause disabled");
-            }
-
-            if (_lockHp && Hp < prevHp)
-            {
-                M.WriteMemory(HpPointer, "int", prevHp.ToString());
-                M.WriteMemory(HpUiPointer, "int", prevHp.ToString());
-                Console.WriteLine("hp reset to " + prevHp);
-            }
-            
-            if (buffering && prevPause != Paused)
-            {
-                buffering = false;
+                Buffering = false;
                 Utitily.SetPosition();
             }
+            if (_lockHp && Hp < _prevHp)
+            {
+                M.WriteMemory(HpPointer, "int", _prevHp.ToString());
+                M.WriteMemory(HpUiPointer, "int", _prevHp.ToString());
+            }
             
-            prevHp = Hp;
-            prevHearts = Hearts;
-            prevPause = Paused;
+            _prevHp = Hp;
+            _prevPause = Paused;
             
             ImGui.End();
         }

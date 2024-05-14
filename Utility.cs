@@ -23,7 +23,6 @@ public class Utitily
     private static float highestYValue;
     private static bool recordingHeight;
     private static float finalValue;
-
     private static bool heightCaptured;
     
     public static void GetPosition()
@@ -40,7 +39,7 @@ public class Utitily
     {
         if (Program.Paused > 0)
         {
-            Program.buffering = true;
+            Program.Buffering = true;
             return;
         }
         Program.M.WriteMemory(Program.VinceXPointer, "float", _localPosX.ToString(CultureInfo.InvariantCulture));
@@ -100,6 +99,11 @@ public class Utitily
 
         prevGround = grounded;
         return highestYValue;
+    }
+
+    public static void LockFloat(float value)
+    {
+        
     }
 
     

@@ -2,6 +2,7 @@
 
 public class LevelList
 {
+    private static int reReadAttempt = 0;
     private static readonly string[,] levels = new string[,] {
         { "Below Decks","20","0","18" },
         { "Bumper Car Bump Off","8","0","6" },
@@ -52,8 +53,17 @@ public class LevelList
                 levels[i, 2] == Program.M.ReadMemory<int>(Program.LevelIndex2Pointer).ToString() &&
                 levels[i, 3] == Program.M.ReadMemory<int>(Program.LevelIndex3Pointer).ToString())
             {
-                Program.currentLevel = levels[i, 0];
+                Program.CurrentLevel = levels[i, 0];
+                Console.WriteLine(levels[i,0]);
+                reReadAttempt = 0;
+                return;
             }
         }
+
+        reReadAttempt++;
+        Console.Clear();
+        Console.WriteLine($"level not found {Program.M.ReadMemory<int>(Program.LevelIndex1Pointer)} {Program.M.ReadMemory<int>(Program.LevelIndex2Pointer)} {Program.M.ReadMemory<int>(Program.LevelIndex3Pointer)}");
+        Console.WriteLine($"attempt {reReadAttempt}");
+        GetLevel();
     }
 }
