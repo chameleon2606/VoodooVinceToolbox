@@ -56,6 +56,7 @@ public class LevelList
                 Program.CurrentLevel = levels[i, 0];
                 Console.WriteLine(levels[i,0]);
                 reReadAttempt = 0;
+                Program.LevelNumber = i;
                 return;
             }
         }

@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
+using System.Numerics;
 using Microsoft.VisualBasic.FileIO;
+using ImGuiNET;
 
 namespace AltToolbox;
 
@@ -100,12 +102,134 @@ public class Utitily
         prevGround = grounded;
         return highestYValue;
     }
-
-    public static void LockFloat(float value)
+    
+    private enum Levels
     {
-        
+        EarthWaterWood = 5,
+        GatekeeperJam = 7,
+        LandORides = 6,
+        BumperCar = 1,
+        InsideKosmobot = 12,
     }
 
-    
-    
+    public static void GetTeleports(int level)
+    {
+        switch (level)
+                {
+                    case (int)Levels.InsideKosmobot:
+                        if (ImGui.Button("teleport to outro cutscene"))
+                        {
+                            Program.M.WriteMemory(Program.VinceXPointer, "float", "-315");
+                            Program.M.WriteMemory(Program.VinceYPointer, "float", "460");
+                            Program.M.WriteMemory(Program.VinceZPointer, "float", "3");
+                    
+                            Program.M.WriteMemory(Program.CamXPointer, "float", "-315");
+                            Program.M.WriteMemory(Program.CamYPointer, "float", "460");
+                            Program.M.WriteMemory(Program.CamZPointer, "float", "3");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case (int)Levels.GatekeeperJam:
+                        if (ImGui.Button("teleport to skip practice"))
+                        {
+                            Program.M.WriteMemory(Program.VinceXPointer, "float", "12.5");
+                            Program.M.WriteMemory(Program.VinceYPointer, "float", "1.2");
+                            Program.M.WriteMemory(Program.VinceZPointer, "float", "-10.4");
+                    
+                            Program.M.WriteMemory(Program.CamXPointer, "float", "11.7");
+                            Program.M.WriteMemory(Program.CamYPointer, "float", "1.9");
+                            Program.M.WriteMemory(Program.CamZPointer, "float", "-10.8");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case (int)Levels.EarthWaterWood:
+                        if (ImGui.Button("teleport to lever platform"))
+                        {
+                            Program.M.WriteMemory(Program.VinceXPointer, "float", "7.4");
+                            Program.M.WriteMemory(Program.VinceYPointer, "float", "3.8");
+                            Program.M.WriteMemory(Program.VinceZPointer, "float", "25.5");
+                    
+                            Program.M.WriteMemory(Program.CamXPointer, "float", "7.1");
+                            Program.M.WriteMemory(Program.CamYPointer, "float", "4.5");
+                            Program.M.WriteMemory(Program.CamZPointer, "float", "24.7");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case (int)Levels.LandORides:
+                        if (ImGui.Button("teleport to tent"))
+                        {
+                            Program.M.WriteMemory(Program.VinceXPointer, "float", "18.1");
+                            Program.M.WriteMemory(Program.VinceYPointer, "float", "-0.7");
+                            Program.M.WriteMemory(Program.VinceZPointer, "float", "0");
+                    
+                            Program.M.WriteMemory(Program.CamXPointer, "float", "18.7");
+                            Program.M.WriteMemory(Program.CamYPointer, "float", "0");
+                            Program.M.WriteMemory(Program.CamZPointer, "float", "-0.6");
+                            ImGui.TreePop();
+                        }
+                        break;
+                    case (int)Levels.BumperCar:
+                        if (ImGui.Button("teleport to plane"))
+                        {
+                            Program.M.WriteMemory(Program.VinceXPointer, "float", "-12");
+                            Program.M.WriteMemory(Program.VinceYPointer, "float", "9.5");
+                            Program.M.WriteMemory(Program.VinceZPointer, "float", "-56");
+                    
+                            Program.M.WriteMemory(Program.CamXPointer, "float", "-12.2");
+                            Program.M.WriteMemory(Program.CamYPointer, "float", "10.2");
+                            Program.M.WriteMemory(Program.CamZPointer, "float", "-56.9");
+                            ImGui.TreePop();
+                        }
+                        break;
+                }
+    }
+    /*
+    public static string[] GetTeleportVectors(int level, int button)
+    {
+        switch (level)
+        {
+            case (int)Levels.InsideKosmobot:
+                switch (button)
+                {
+                    case 0:
+                        return new[] { "outro cutscene", "-315, 460, 3" };
+                }
+                break;
+            
+            case (int)Levels.GatekeeperJam:
+                switch (button)
+                {
+                    case 0:
+                        return new[] { "Mole skip", "12.5", "1.2", "-10.4" };
+                }
+                break;
+            
+            case (int)Levels.EarthWaterWood:
+                switch (button)
+                {
+                    case 0:
+                        return new[] { "Lever platform", "7.4", "3.8", "25.5" };
+                }
+                break;
+            
+            case (int)Levels.LandORides:
+                switch (button)
+                {
+                    case 0:
+                        return new[] { "Tent", "18.1", "-0.7", "0" };
+                }
+                break;
+            
+            case (int)Levels.BumperCar:
+                switch (button)
+                {
+                    case 0:
+                        return new[] { "Plane", "-12", "9.5", "-56" };
+                }
+                break;
+        }
+
+        return new[] { "no teleport" };
+    }
+    */
 }

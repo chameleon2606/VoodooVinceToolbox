@@ -78,6 +78,7 @@ namespace AltToolbox
         public static bool Buffering;
 
         public static string CurrentLevel = "";
+        public static int LevelNumber = 0;
         
         private static float _jumpHeight;
         private static bool _grounded;
@@ -117,13 +118,15 @@ namespace AltToolbox
         private static void DrawMenu()
         {
             ImGui.Begin("Vince Toolbox");
-            //ImGui.ShowDemoWindow();
+            // Load the name of the current level, if the ingame time is reset
             if (M.ReadFloat(TimerPointer) != 0 && _prevTime == 0) LevelList.GetLevel();
             _prevTime = M.ReadFloat(TimerPointer);
             
+            // Displays the current level with the ingame time
             ImGui.Text(CurrentLevel);
             ImGui.Text(TimeSpan.FromSeconds(M.ReadFloat(TimerPointer)).ToString(@"h\:mm\:ss\:ff"));
-            if (ImGui.CollapsingHeader("Coordiantes"))
+            
+            if (ImGui.CollapsingHeader("Coordinates"))
             {
                 if (ImGui.TreeNode("Vince Position"))
                 {
@@ -278,7 +281,7 @@ namespace AltToolbox
                 
                 ImGui.Checkbox("Alt-Tab mode", ref _enableAlttab);
                 
-                if (_enableAlttab && Paused != 0 && CurrentLevel != "Voodoo Shop")
+                if (_enableAlttab && Paused != 0 && LevelNumber != 38)
                 {
                     M.WriteMemory(PausePointer, "int", "0");
                     Console.WriteLine("pause disabled");
@@ -347,10 +350,26 @@ namespace AltToolbox
             
             if (ImGui.CollapsingHeader("Teleports"))
             {
-                switch (CurrentLevel)
+                Utitily.GetTeleports(LevelNumber);
+                /*
+                for (int i = 0; i < Utitily.GetTeleports(LevelNumber); i++)
                 {
-                    case "Inside the Kosmobot":
-                        if (ImGui.Button("teleport to cutscene"))
+                    if (ImGui.Button(i.ToString()))
+                    {
+                        M.WriteMemory(VinceXPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].X.ToString(CultureInfo.InvariantCulture));
+                        M.WriteMemory(VinceYPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].Y.ToString(CultureInfo.InvariantCulture));
+                        M.WriteMemory(VinceZPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].Z.ToString(CultureInfo.InvariantCulture));
+                    
+                        M.WriteMemory(CamXPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].X.ToString(CultureInfo.InvariantCulture));
+                        M.WriteMemory(CamYPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].Y.ToString(CultureInfo.InvariantCulture));
+                        M.WriteMemory(CamZPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].Z.ToString(CultureInfo.InvariantCulture));
+                    }
+                }*/
+                /*
+                switch (LevelNumber)
+                {
+                    case 12:
+                        if (ImGui.Button("teleport to outro cutscene"))
                         {
                             M.WriteMemory(VinceXPointer, "float", "-315");
                             M.WriteMemory(VinceYPointer, "float", "460");
@@ -362,7 +381,7 @@ namespace AltToolbox
                             ImGui.TreePop();
                         }
                         break;
-                    case "Gatekeeper Jam":
+                    case 7:
                         if (ImGui.Button("teleport to skip practice"))
                         {
                             M.WriteMemory(VinceXPointer, "float", "12.5");
@@ -375,7 +394,7 @@ namespace AltToolbox
                             ImGui.TreePop();
                         }
                         break;
-                    case "Earth, Water & Wood":
+                    case 5:
                         if (ImGui.Button("teleport to lever platform"))
                         {
                             M.WriteMemory(VinceXPointer, "float", "7.4");
@@ -388,7 +407,7 @@ namespace AltToolbox
                             ImGui.TreePop();
                         }
                         break;
-                    case "Finger's Land O' Rides":
+                    case 6:
                         if (ImGui.Button("teleport to tent"))
                         {
                             M.WriteMemory(VinceXPointer, "float", "18.1");
@@ -401,7 +420,7 @@ namespace AltToolbox
                             ImGui.TreePop();
                         }
                         break;
-                    case "Bumper Car Bump Off":
+                    case 1:
                         if (ImGui.Button("teleport to plane"))
                         {
                             M.WriteMemory(VinceXPointer, "float", "-12");
@@ -414,7 +433,8 @@ namespace AltToolbox
                             ImGui.TreePop();
                         }
                         break;
-                }
+                }*/
+                //ImGui.Text(LevelNumber.ToString());
             }
             
             ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
