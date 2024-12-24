@@ -99,8 +99,10 @@ namespace AltToolbox
         private static bool _lockZ;
         private static float _savedZPos = 0;
         private static bool _isZCaptured;
-        private static bool test;
-        
+        private static string _saveText = "save position";
+        private static string _teleportText = "teleport to position";
+        private static System.Timers.Timer _saveTextTimer;
+        private static System.Timers.Timer _teleportTextTimer;
 
         protected override void Render()
         {
@@ -287,13 +289,29 @@ namespace AltToolbox
                     Console.WriteLine("pause disabled");
                 }
                 
-                if (ImGui.Button("save position", new Vector2(110, 50)))
+                if (ImGui.Button(_saveText, new Vector2(110, 50)))
                 {
+                    _saveText = "position saved!";
+                    _saveTextTimer = new System.Timers.Timer(1000);
+                    _saveTextTimer.Elapsed += (source, e) =>
+                    {
+                        _saveText = "save position";
+                    };
+                    _saveTextTimer.AutoReset = false;
+                    _saveTextTimer.Enabled = true;
                     Utitily.GetPosition();
                 }
                 ImGui.SameLine();
-                if (ImGui.Button("teleport to\nsaved position", new Vector2(110, 50)))
+                if (ImGui.Button(_teleportText, new Vector2(110, 50)))
                 {
+                    _teleportText = "teleported!";
+                    _teleportTextTimer = new System.Timers.Timer(1000);
+                    _teleportTextTimer.Elapsed += (source, e) =>
+                    {
+                        _teleportText = "teleport to\nsaved position";
+                    };
+                    _teleportTextTimer.AutoReset = false;
+                    _teleportTextTimer.Enabled = true;
                     Utitily.SetPosition();
                 }
             }
@@ -351,90 +369,6 @@ namespace AltToolbox
             if (ImGui.CollapsingHeader("Teleports"))
             {
                 Utitily.GetTeleports(LevelNumber);
-                /*
-                for (int i = 0; i < Utitily.GetTeleports(LevelNumber); i++)
-                {
-                    if (ImGui.Button(i.ToString()))
-                    {
-                        M.WriteMemory(VinceXPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].X.ToString(CultureInfo.InvariantCulture));
-                        M.WriteMemory(VinceYPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].Y.ToString(CultureInfo.InvariantCulture));
-                        M.WriteMemory(VinceZPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[0].Z.ToString(CultureInfo.InvariantCulture));
-                    
-                        M.WriteMemory(CamXPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].X.ToString(CultureInfo.InvariantCulture));
-                        M.WriteMemory(CamYPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].Y.ToString(CultureInfo.InvariantCulture));
-                        M.WriteMemory(CamZPointer, "float", Utitily.GetTeleportVectors(LevelNumber, i)[1].Z.ToString(CultureInfo.InvariantCulture));
-                    }
-                }*/
-                /*
-                switch (LevelNumber)
-                {
-                    case 12:
-                        if (ImGui.Button("teleport to outro cutscene"))
-                        {
-                            M.WriteMemory(VinceXPointer, "float", "-315");
-                            M.WriteMemory(VinceYPointer, "float", "460");
-                            M.WriteMemory(VinceZPointer, "float", "3");
-                    
-                            M.WriteMemory(CamXPointer, "float", "-315");
-                            M.WriteMemory(CamYPointer, "float", "460");
-                            M.WriteMemory(CamZPointer, "float", "3");
-                            ImGui.TreePop();
-                        }
-                        break;
-                    case 7:
-                        if (ImGui.Button("teleport to skip practice"))
-                        {
-                            M.WriteMemory(VinceXPointer, "float", "12.5");
-                            M.WriteMemory(VinceYPointer, "float", "1.2");
-                            M.WriteMemory(VinceZPointer, "float", "-10.4");
-                    
-                            M.WriteMemory(CamXPointer, "float", "11.7");
-                            M.WriteMemory(CamYPointer, "float", "1.9");
-                            M.WriteMemory(CamZPointer, "float", "-10.8");
-                            ImGui.TreePop();
-                        }
-                        break;
-                    case 5:
-                        if (ImGui.Button("teleport to lever platform"))
-                        {
-                            M.WriteMemory(VinceXPointer, "float", "7.4");
-                            M.WriteMemory(VinceYPointer, "float", "3.8");
-                            M.WriteMemory(VinceZPointer, "float", "25.5");
-                    
-                            M.WriteMemory(CamXPointer, "float", "7.1");
-                            M.WriteMemory(CamYPointer, "float", "4.5");
-                            M.WriteMemory(CamZPointer, "float", "24.7");
-                            ImGui.TreePop();
-                        }
-                        break;
-                    case 6:
-                        if (ImGui.Button("teleport to tent"))
-                        {
-                            M.WriteMemory(VinceXPointer, "float", "18.1");
-                            M.WriteMemory(VinceYPointer, "float", "-0.7");
-                            M.WriteMemory(VinceZPointer, "float", "0");
-                    
-                            M.WriteMemory(CamXPointer, "float", "18.7");
-                            M.WriteMemory(CamYPointer, "float", "0");
-                            M.WriteMemory(CamZPointer, "float", "-0.6");
-                            ImGui.TreePop();
-                        }
-                        break;
-                    case 1:
-                        if (ImGui.Button("teleport to plane"))
-                        {
-                            M.WriteMemory(VinceXPointer, "float", "-12");
-                            M.WriteMemory(VinceYPointer, "float", "9.5");
-                            M.WriteMemory(VinceZPointer, "float", "-56");
-                    
-                            M.WriteMemory(CamXPointer, "float", "-12.2");
-                            M.WriteMemory(CamYPointer, "float", "10.2");
-                            M.WriteMemory(CamZPointer, "float", "-56.9");
-                            ImGui.TreePop();
-                        }
-                        break;
-                }*/
-                //ImGui.Text(LevelNumber.ToString());
             }
             
             ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - 100, 20));
@@ -498,6 +432,5 @@ namespace AltToolbox
         {
             _isGameRunning = M.OpenProcess("Vince");
         }
-
     }
 }
