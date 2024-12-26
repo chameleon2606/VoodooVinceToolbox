@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[1.75.0, )"
             },
+            "InputSimulator": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
             "Memory.dll.x64": {
               "target": "Package",
               "version": "[1.2.27, )"

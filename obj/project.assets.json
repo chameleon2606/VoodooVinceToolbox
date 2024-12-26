@@ -85,6 +85,19 @@
           }
         }
       },
+      "InputSimulator/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net20/WindowsInput.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net20/WindowsInput.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Memory.dll.x64/1.2.27": {
         "type": "package",
         "compile": {
@@ -341,6 +354,19 @@
         "runtimes/osx-x64/native/libcimgui.dylib",
         "runtimes/win-x64/native/cimgui.dll",
         "runtimes/win-x86/native/cimgui.dll"
+      ]
+    },
+    "InputSimulator/1.0.4": {
+      "sha512": "D0LvRCPQMX6/FJHBjng+RO+wRDuHTJrfo7IAc7rmkPvRqchdVGJWg3y70peOtDy3OLNK+HSOwVkH4GiuLnkKgA==",
+      "type": "package",
+      "path": "inputsimulator/1.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "inputsimulator.1.0.4.nupkg.sha512",
+        "inputsimulator.nuspec",
+        "lib/net20/WindowsInput.dll",
+        "lib/net20/WindowsInput.xml"
       ]
     },
     "Memory.dll.x64/1.2.27": {
@@ -616,6 +642,7 @@
     "net6.0": [
       "ClickableTransparentOverlay >= 6.2.1",
       "ImGui.NET.Docking >= 1.75.0",
+      "InputSimulator >= 1.0.4",
       "Memory.dll.x64 >= 1.2.27",
       "SixLabors.ImageSharp >= 3.1.4",
       "Vortice.Mathematics >= 1.6.2"
@@ -669,6 +696,10 @@
             "target": "Package",
             "version": "[1.75.0, )"
           },
+          "InputSimulator": {
+            "target": "Package",
+            "version": "[1.0.4, )"
+          },
           "Memory.dll.x64": {
             "target": "Package",
             "version": "[1.2.27, )"
@@ -719,6 +750,16 @@
       "warningLevel": 1,
       "message": "Package 'SixLabors.ImageSharp' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
       "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'InputSimulator 1.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "InputSimulator",
       "targetGraphs": [
         "net6.0"
       ]

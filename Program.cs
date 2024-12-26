@@ -1,10 +1,14 @@
 ﻿using System.Drawing;
 using System.Globalization;
 using System.Numerics;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using ImGuiNET;
 using ClickableTransparentOverlay;
 using Memory;
 using System.Runtime.InteropServices;
+using WindowsInput;
+using WindowsInput.Native;
 
 //dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true --output "C:\Users\leong\Desktop\build"
 
@@ -13,6 +17,8 @@ namespace AltToolbox
 {
     public class Program : Overlay
     {
+        private static InputSimulator key = new();
+        
         [DllImport("kernel32.dll")]
         static extern IntPtr GetConsoleWindow();
 
@@ -99,10 +105,10 @@ namespace AltToolbox
         private static bool _lockZ;
         private static float _savedZPos = 0;
         private static bool _isZCaptured;
-        private static string _saveText = "save position";
-        private static string _teleportText = "teleport to position";
-        private static System.Timers.Timer _saveTextTimer;
-        private static System.Timers.Timer _teleportTextTimer;
+        public static string _saveText = "save position";
+        public static string _teleportText = "teleport to\nsaved position";
+        private static bool _isTpInputAllowed = true;
+        private static bool _isSaveInputAllowed = true;
 
         protected override void Render()
         {
@@ -119,6 +125,33 @@ namespace AltToolbox
 
         private static void DrawMenu()
         {
+            if (key.InputDeviceState.IsKeyUp(VirtualKeyCode.VK_N))
+            {
+                _isSaveInputAllowed = true;
+            }
+            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.VK_N) && _isSaveInputAllowed)
+            {
+                // if you're not in the voodoo shop
+                if (M.ReadMemory<int>(LevelIndex2Pointer) != 7)
+                {
+                    _isSaveInputAllowed = false;
+                    Utitily.SavePosition();
+                }
+            }
+            if(key.InputDeviceState.IsKeyUp(VirtualKeyCode.VK_M))
+            {
+                _isTpInputAllowed = true;
+            }
+            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.VK_M) && _isTpInputAllowed)
+            {
+                // if you're not in the voodoo shop
+                if (M.ReadMemory<int>(LevelIndex2Pointer) != 7)
+                {
+                    _isTpInputAllowed = false;
+                    Utitily.TeleportToSavedPosition();
+                }
+            }
+            
             ImGui.Begin("Vince Toolbox");
             // Load the name of the current level, if the ingame time is reset
             if (M.ReadFloat(TimerPointer) != 0 && _prevTime == 0) LevelList.GetLevel();
@@ -139,7 +172,6 @@ namespace AltToolbox
                         {
                             _savedXPos = M.ReadFloat(VinceXPointer);
                             _isXCaptured = true;
-                            Console.WriteLine("X captured");
                         }
                         else
                         {
@@ -160,7 +192,6 @@ namespace AltToolbox
                         {
                             _savedYPos = M.ReadFloat(VinceYPointer);
                             _isYCaptured = true;
-                            Console.WriteLine("height captured");
                         }
                         else
                         {
@@ -181,7 +212,6 @@ namespace AltToolbox
                         {
                             _savedZPos = M.ReadFloat(VinceZPointer);
                             _isZCaptured = true;
-                            Console.WriteLine("Z captured");
                         }
                         else
                         {
@@ -286,33 +316,16 @@ namespace AltToolbox
                 if (_enableAlttab && Paused != 0 && LevelNumber != 38)
                 {
                     M.WriteMemory(PausePointer, "int", "0");
-                    Console.WriteLine("pause disabled");
                 }
                 
                 if (ImGui.Button(_saveText, new Vector2(110, 50)))
                 {
-                    _saveText = "position saved!";
-                    _saveTextTimer = new System.Timers.Timer(1000);
-                    _saveTextTimer.Elapsed += (source, e) =>
-                    {
-                        _saveText = "save position";
-                    };
-                    _saveTextTimer.AutoReset = false;
-                    _saveTextTimer.Enabled = true;
-                    Utitily.GetPosition();
+                    Utitily.SavePosition();
                 }
                 ImGui.SameLine();
                 if (ImGui.Button(_teleportText, new Vector2(110, 50)))
                 {
-                    _teleportText = "teleported!";
-                    _teleportTextTimer = new System.Timers.Timer(1000);
-                    _teleportTextTimer.Elapsed += (source, e) =>
-                    {
-                        _teleportText = "teleport to\nsaved position";
-                    };
-                    _teleportTextTimer.AutoReset = false;
-                    _teleportTextTimer.Enabled = true;
-                    Utitily.SetPosition();
+                    Utitily.TeleportToSavedPosition();
                 }
             }
             
@@ -385,7 +398,7 @@ namespace AltToolbox
             if (Buffering && _prevPause != Paused)
             {
                 Buffering = false;
-                Utitily.SetPosition();
+                Utitily.TeleportToSavedPosition();
             }
             if (_lockHp && Hp < _prevHp)
             {

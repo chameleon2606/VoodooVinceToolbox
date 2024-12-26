@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "WLH/bheJjo4=",
+  "dgSpecHash": "th95xQ/Pfvw=",
   "success": true,
   "projectFilePath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leong\\.nuget\\packages\\clickabletransparentoverlay\\6.2.1\\clickabletransparentoverlay.6.2.1.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\imgui.net\\1.89.2\\imgui.net.1.89.2.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\imgui.net.docking\\1.75.0\\imgui.net.docking.1.75.0.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\inputsimulator\\1.0.4\\inputsimulator.1.0.4.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\memory.dll.x64\\1.2.27\\memory.dll.x64.1.2.27.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\sharpgen.runtime\\2.0.0-beta.11\\sharpgen.runtime.2.0.0-beta.11.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\sharpgen.runtime.com\\2.0.0-beta.11\\sharpgen.runtime.com.2.0.0-beta.11.nupkg.sha512",
@@ -37,6 +38,16 @@
       "warningLevel": 1,
       "message": "Package 'SixLabors.ImageSharp' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
       "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'InputSimulator 1.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "InputSimulator",
       "targetGraphs": [
         "net6.0"
       ]

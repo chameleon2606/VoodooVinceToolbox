@@ -2,6 +2,7 @@
 using System.Numerics;
 using Microsoft.VisualBasic.FileIO;
 using ImGuiNET;
+using System.Timers;
 
 namespace AltToolbox;
 
@@ -27,7 +28,10 @@ public class Utitily
     private static float finalValue;
     private static bool heightCaptured;
     
-    public static void GetPosition()
+    private static System.Timers.Timer _saveTextTimer;
+    private static System.Timers.Timer _teleportTextTimer;
+    
+    private static void GetPosition()
     {
         _localPosX = Program.M.ReadFloat(Program.VinceXPointer);
         _localPosY = Program.M.ReadFloat(Program.VinceYPointer) + 0.01f;
@@ -37,7 +41,33 @@ public class Utitily
         _localCamY = Program.M.ReadFloat(Program.CamYPointer);
         _localCamZ = Program.M.ReadFloat(Program.CamZPointer);
     }
-    public static void SetPosition()
+
+    public static void SavePosition()
+    {
+        Program._saveText = "position saved!";
+        _saveTextTimer = new (1000);
+        _saveTextTimer.Elapsed += (source, e) =>
+        {
+            Program._saveText = "save position";
+        };
+        _saveTextTimer.AutoReset = false;
+        _saveTextTimer.Enabled = true;
+        GetPosition();
+    }
+
+    public static void TeleportToSavedPosition()
+    {
+        Program._teleportText = "teleported!";
+        _teleportTextTimer = new (1000);
+        _teleportTextTimer.Elapsed += (source, e) =>
+        {
+            Program._teleportText = "teleport to\nsaved position";
+        };
+        _teleportTextTimer.AutoReset = false;
+        _teleportTextTimer.Enabled = true;
+        SetPosition();
+    }
+    private static void SetPosition()
     {
         if (Program.Paused > 0)
         {
