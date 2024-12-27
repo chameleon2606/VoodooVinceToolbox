@@ -7,4 +7,10 @@ how to use this fine piece of software:
 -click on the downloaded .exe file<br>
 -and then maybe it works<br>
 
+for the steam version:
+For saving your current position and teleporting there, enable steam input, go to community layouts and download "chameleon's toolbox layout".
+This will press the + key when pressing D-Pad left (saving the current position), and the - key when pressing D-Pad right (teleporting to that position)
+
+If you don't want to use steam input or are on a different version, map these buttons using a different program.
+
 ![preview.png](preview.png)

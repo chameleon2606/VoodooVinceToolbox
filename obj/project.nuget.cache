@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "th95xQ/Pfvw=",
+  "dgSpecHash": "TDvzKWppagXDVBLXbnBoz58DEApPHJ2aQGsUOsyRZ361fGU5ulgT09oMcYCthm3ztwkaCXIOLfllPALHA3y2Kg==",
   "success": true,
   "projectFilePath": "F:\\DotNetProjects\\VoodooVinceToolbox6\\VoodooVinceToolbox6.csproj",
   "expectedPackageFiles": [
@@ -19,29 +19,12 @@
     "C:\\Users\\leong\\.nuget\\packages\\vortice.direct3d11\\2.2.0\\vortice.direct3d11.2.2.0.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\vortice.directx\\2.2.0\\vortice.directx.2.2.0.nupkg.sha512",
     "C:\\Users\\leong\\.nuget\\packages\\vortice.dxgi\\2.2.0\\vortice.dxgi.2.2.0.nupkg.sha512",
-    "C:\\Users\\leong\\.nuget\\packages\\vortice.mathematics\\1.6.2\\vortice.mathematics.1.6.2.nupkg.sha512"
+    "C:\\Users\\leong\\.nuget\\packages\\vortice.mathematics\\1.6.2\\vortice.mathematics.1.6.2.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.21\\microsoft.netcore.app.runtime.win-x64.6.0.21.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.21\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.21.nupkg.sha512",
+    "C:\\Users\\leong\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.21\\microsoft.aspnetcore.app.runtime.win-x64.6.0.21.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'SixLabors.ImageSharp' 3.1.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-63p8-c4ww-9cg7",
-      "libraryId": "SixLabors.ImageSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'SixLabors.ImageSharp' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
-      "libraryId": "SixLabors.ImageSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
