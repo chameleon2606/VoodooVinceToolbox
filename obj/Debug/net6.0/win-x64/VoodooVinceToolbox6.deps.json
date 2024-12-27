@@ -11,6 +11,7 @@
         "dependencies": {
           "ClickableTransparentOverlay": "6.2.1",
           "ImGui.NET.Docking": "1.75.0",
+          "InputSimulator": "1.0.4",
           "Memory.dll.x64": "1.2.27",
           "SixLabors.ImageSharp": "3.1.4",
           "Vortice.Mathematics": "1.6.2",
@@ -723,6 +724,14 @@
           "System.Runtime.CompilerServices.Unsafe": "4.4.0"
         }
       },
+      "InputSimulator/1.0.4": {
+        "runtime": {
+          "lib/net20/WindowsInput.dll": {
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
+          }
+        }
+      },
       "Memory.dll.x64/1.2.27": {
         "runtime": {
           "lib/netstandard2.0/Memory.dll": {
@@ -857,6 +866,13 @@
       "sha512": "sha512-OR1NksDIaBcL1cLTx8CztG6Dvpgc7tu82JWYoYkerzWlsq4k160ZOG+YUo5OBaIkEDBGh/6AQ6Y0xF58FXo8PQ==",
       "path": "imgui.net.docking/1.75.0",
       "hashPath": "imgui.net.docking.1.75.0.nupkg.sha512"
+    },
+    "InputSimulator/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D0LvRCPQMX6/FJHBjng+RO+wRDuHTJrfo7IAc7rmkPvRqchdVGJWg3y70peOtDy3OLNK+HSOwVkH4GiuLnkKgA==",
+      "path": "inputsimulator/1.0.4",
+      "hashPath": "inputsimulator.1.0.4.nupkg.sha512"
     },
     "Memory.dll.x64/1.2.27": {
       "type": "package",

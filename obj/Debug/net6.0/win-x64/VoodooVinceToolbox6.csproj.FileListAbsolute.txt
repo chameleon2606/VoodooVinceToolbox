@@ -248,3 +248,4 @@ F:\DotNetProjects\VoodooVinceToolbox6\obj\Debug\net6.0\win-x64\refint\VoodooVinc
 F:\DotNetProjects\VoodooVinceToolbox6\obj\Debug\net6.0\win-x64\VoodooVinceToolbox6.pdb
 F:\DotNetProjects\VoodooVinceToolbox6\obj\Debug\net6.0\win-x64\VoodooVinceToolbox6.genruntimeconfig.cache
 F:\DotNetProjects\VoodooVinceToolbox6\obj\Debug\net6.0\win-x64\ref\VoodooVinceToolbox6.dll
+F:\DotNetProjects\VoodooVinceToolbox6\bin\Debug\net6.0\win-x64\WindowsInput.dll

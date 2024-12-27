@@ -131,8 +131,7 @@ namespace AltToolbox
             }
             else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.VK_N) && _isSaveInputAllowed)
             {
-                // if you're not in the voodoo shop
-                if (M.ReadMemory<int>(LevelIndex2Pointer) != 7)
+                if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
                 {
                     _isSaveInputAllowed = false;
                     Utitily.SavePosition();
@@ -145,7 +144,7 @@ namespace AltToolbox
             else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.VK_M) && _isTpInputAllowed)
             {
                 // if you're not in the voodoo shop
-                if (M.ReadMemory<int>(LevelIndex2Pointer) != 7)
+                if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
                 {
                     _isTpInputAllowed = false;
                     Utitily.TeleportToSavedPosition();
