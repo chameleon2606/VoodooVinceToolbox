@@ -125,11 +125,11 @@ namespace AltToolbox
 
         private static void DrawMenu()
         {
-            if (key.InputDeviceState.IsKeyUp(VirtualKeyCode.ADD))
+            if (key.InputDeviceState.IsKeyUp(VirtualKeyCode.F5))
             {
                 _isSaveInputAllowed = true;
             }
-            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.ADD) && _isSaveInputAllowed)
+            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F5) && _isSaveInputAllowed)
             {
                 if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
                 {
@@ -137,11 +137,11 @@ namespace AltToolbox
                     Utitily.SavePosition();
                 }
             }
-            if(key.InputDeviceState.IsKeyUp(VirtualKeyCode.SUBTRACT))
+            if(key.InputDeviceState.IsKeyUp(VirtualKeyCode.F6))
             {
                 _isTpInputAllowed = true;
             }
-            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.SUBTRACT) && _isTpInputAllowed)
+            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F6) && _isTpInputAllowed)
             {
                 // if you're not in the voodoo shop
                 if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
