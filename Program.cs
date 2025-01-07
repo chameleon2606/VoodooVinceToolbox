@@ -125,29 +125,32 @@ namespace AltToolbox
 
         private static void DrawMenu()
         {
-            if (key.InputDeviceState.IsKeyUp(VirtualKeyCode.F5))
+            if (Paused < 1)
             {
-                _isSaveInputAllowed = true;
-            }
-            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F5) && _isSaveInputAllowed)
-            {
-                if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
+                if (key.InputDeviceState.IsKeyUp(VirtualKeyCode.F5))
                 {
-                    _isSaveInputAllowed = false;
-                    Utitily.SavePosition();
+                    _isSaveInputAllowed = true;
                 }
-            }
-            if(key.InputDeviceState.IsKeyUp(VirtualKeyCode.F6))
-            {
-                _isTpInputAllowed = true;
-            }
-            else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F6) && _isTpInputAllowed)
-            {
-                // if you're not in the voodoo shop
-                if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
+                else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F5) && _isSaveInputAllowed)
                 {
-                    _isTpInputAllowed = false;
-                    Utitily.TeleportToSavedPosition();
+                    if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
+                    {
+                        _isSaveInputAllowed = false;
+                        Utitily.SavePosition();
+                    }
+                }
+                if(key.InputDeviceState.IsKeyUp(VirtualKeyCode.F6))
+                {
+                    _isTpInputAllowed = true;
+                }
+                else if(key.InputDeviceState.IsKeyDown(VirtualKeyCode.F6) && _isTpInputAllowed)
+                {
+                    // if you're not in the voodoo shop
+                    if (CurrentLevel is not ("Voodoo Shop" or "The Basket Case"))
+                    {
+                        _isTpInputAllowed = false;
+                        Utitily.TeleportToSavedPosition();
+                    }
                 }
             }
             
@@ -270,14 +273,15 @@ namespace AltToolbox
                 }
                 ImGui.Checkbox("Lock HP", ref _lockHp);
                 float newHeight = 0;
-                if (ImGui.VSliderFloat("Move up Vince", new Vector2(30, 100), ref newHeight, -.1f, .1f, ""))
+                if (ImGui.VSliderFloat("Move up", new Vector2(30, 100), ref newHeight, -.1f, .1f, ""))
                 {
                     if (!_isHeightLocked)
                     {
                         _prevY = M.ReadFloat(VinceYPointer);
                     }
-
+                    
                     _prevY += newHeight;
+                    _savedYPos = _prevY;
                     _isHeightLocked = true;
                     _prevX = M.ReadFloat(VinceXPointer);
                     _prevZ = M.ReadFloat(VinceZPointer);
